@@ -1,0 +1,5 @@
+flowchart LR
+    S((START)) --> model
+    model --> q{asked for a tool?}
+    q -- yes --> tools --> model
+    q -- no --> E((END))

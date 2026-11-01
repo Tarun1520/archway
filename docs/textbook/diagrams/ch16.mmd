@@ -1,0 +1,10 @@
+sequenceDiagram
+    participant You as Your code
+    participant M as Model
+    participant T as Tool (a Python function)
+    You->>M: question + the list of tools it may ask for
+    M-->>You: "call add(a=2, b=3)"
+    You->>T: run add(2, 3)
+    T-->>You: 5
+    You->>M: the tool returned 5
+    M-->>You: "The answer is 5."

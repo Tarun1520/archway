@@ -1,0 +1,5 @@
+flowchart LR
+    S((START)) --> step
+    step --> q{n < 3 ?}
+    q -- yes --> step
+    q -- no --> E((END))

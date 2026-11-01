@@ -1,0 +1,50 @@
+/**
+ * Every word on the sign-in page (components/auth/LoginPage.tsx) and the account menu in the studio.
+ */
+export const authCopy = {
+  back: 'Back to Archway',
+  openStudio: 'Open studio',
+  tabs: { signIn: 'Sign in', signUp: 'Create account' },
+  headline: { signIn: 'Welcome back.', signUp: 'Begin something.' },
+  lead: {
+    signIn: 'Your projects, research and build plans are where you left them.',
+    signUp: 'An account keeps your projects private, and saves every step so you can pick up where you left off.',
+  },
+  name: 'Your name',
+  nameOptional: 'optional',
+  email: 'Email',
+  password: 'Password',
+  passwordHint: 'At least 10 characters.',
+  show: 'Show',
+  hide: 'Hide',
+  submit: { signIn: 'Sign in', signUp: 'Create account' },
+  working: { signIn: 'Signing in…', signUp: 'Creating your account…' },
+  switchTo: { signIn: 'New here?', signUp: 'Already have an account?' },
+  switchAction: { signIn: 'Create an account', signUp: 'Sign in' },
+  unreachable: 'Archway’s server is not answering right now, so you cannot sign in yet. Try again in a moment.',
+  forgot: 'Forgot password?',
+  // Forgot password: asking for a link, then choosing a new password with it.
+  recovery: {
+    forgotHeadline: 'Reset your password.',
+    forgotLead: 'Enter the email of your account and we will send you a link to choose a new password.',
+    send: 'Send reset link',
+    sending: 'Sending…',
+    sent: 'If an account exists for that email, a reset link is on its way. It works once, for 30 minutes. If it does not arrive, check your spam folder.',
+    resetHeadline: 'Choose a new password.',
+    resetLead: 'Saving it also signs you out on every other device.',
+    newPassword: 'New password',
+    save: 'Save new password',
+    saving: 'Saving…',
+    done: 'Your password is changed. Sign in with the new one.',
+    back: 'Back to sign in',
+  },
+  privacy: 'Your projects are visible only to you. The admin sees usage counts, never your ideas.',
+  // The studio's account menu.
+  menu: 'Account',
+  signedInAs: 'Signed in as',
+  tokens: 'Model tokens this month',
+  noLimit: 'No limit',
+  admin: 'Admin dashboard',
+  studio: 'Back to the studio',
+  signOut: 'Sign out',
+}

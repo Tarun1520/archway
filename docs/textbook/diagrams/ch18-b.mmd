@@ -1,0 +1,9 @@
+flowchart TB
+    Lead((Research lead))
+    Lead <-->|task and report| Analyst[Capability analyst<br/>splits the idea into parts]
+    Lead <-->|one per part, in parallel| Scouts[Component scouts<br/>search and verify]
+    Scouts -->|each find| Judge[Relevance judge<br/>blind second opinion]
+    Judge -->|verdict| Lead
+    Lead <-->|task and report| Projects[Project scout<br/>similar whole apps]
+    Lead <-->|task and report| Reviewer[Reviewer<br/>looks for gaps]
+    Lead --> Done([Finish research])

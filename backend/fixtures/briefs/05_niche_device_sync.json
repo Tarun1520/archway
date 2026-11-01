@@ -1,0 +1,38 @@
+{
+  "demo": true,
+  "slug": "05_niche_device_sync",
+  "title": "Notes sync for a proprietary e-ink reader",
+  "scenario": "Weak evidence: little or no public open-source work covers the key requirement, so the system should abstain or return a partial result instead of inventing a plan.",
+  "idea": "I want my knowledge base to sync both ways with my e-ink reader, which uses its own closed file format and has no public developer documentation.",
+  "brief": {
+    "id": "sample-05",
+    "version": 1,
+    "problem": "Keep a personal knowledge base in two-way sync with an e-ink device that uses an undocumented, closed file format.",
+    "users": "One person who reads and annotates on an e-ink device.",
+    "must_have": [
+      {
+        "id": "REQ-1",
+        "text": "Two-way sync of notes and annotations with the device"
+      },
+      {
+        "id": "REQ-2",
+        "text": "No loss of annotations when both sides changed"
+      }
+    ],
+    "nice_to_have": [],
+    "stack_preferences": [],
+    "constraints": {
+      "budget": null,
+      "privacy": "Notes stay on the user's own devices",
+      "deployment": "Local",
+      "stated": []
+    },
+    "assumptions": [],
+    "unknowns": [
+      "The device model and firmware",
+      "Whether the file format has been reverse engineered by anyone"
+    ],
+    "conflicts": [],
+    "confirmed": false
+  }
+}

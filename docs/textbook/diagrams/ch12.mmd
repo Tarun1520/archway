@@ -1,0 +1,9 @@
+flowchart LR
+    subgraph outer[Outer graph]
+        direction LR
+        S((START)) --> sub
+        subgraph sub[sub: a whole graph]
+            clean
+        end
+        sub --> finish --> E((END))
+    end

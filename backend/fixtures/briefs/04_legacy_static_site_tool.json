@@ -1,0 +1,48 @@
+{
+  "demo": true,
+  "slug": "04_legacy_static_site_tool",
+  "title": "Docs site generator for an old template format",
+  "scenario": "Archived-only candidates: the repositories that match are archived, so the eligibility policy must exclude or flag them.",
+  "idea": "I have hundreds of documentation pages in an old template format nobody maintains anymore. I need a tool that builds them into a static website.",
+  "brief": {
+    "id": "sample-04",
+    "version": 1,
+    "problem": "Existing documentation written in an unmaintained template format must still be built into a static website.",
+    "users": "A maintainer of a long-lived documentation set.",
+    "must_have": [
+      {
+        "id": "REQ-1",
+        "text": "Build the existing pages into static HTML without rewriting them"
+      },
+      {
+        "id": "REQ-2",
+        "text": "Run from the command line as part of a build"
+      }
+    ],
+    "nice_to_have": [
+      {
+        "id": "NICE-1",
+        "text": "Live reload while editing"
+      }
+    ],
+    "stack_preferences": [],
+    "constraints": {
+      "budget": null,
+      "privacy": null,
+      "deployment": "Static files on any web host",
+      "stated": []
+    },
+    "assumptions": [
+      {
+        "id": "ASM-1",
+        "text": "Migrating the pages to a modern format is out of scope",
+        "reason": "The idea asks to build them as they are"
+      }
+    ],
+    "unknowns": [
+      "The exact name and version of the old template format"
+    ],
+    "conflicts": [],
+    "confirmed": false
+  }
+}

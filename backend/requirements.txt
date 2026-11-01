@@ -1,0 +1,63 @@
+# =============================================================================
+# Archway backend: runtime requirements
+# =============================================================================
+#
+# LEARNING NOTE: what is this file?
+#   A requirements file is a plain list of the Python packages this project
+#   needs. `pip` (Python's package installer) reads it and downloads each one.
+#
+# How to install (run from the project root, with the venv active):
+#   source backend/.venv/bin/activate
+#   pip install -r backend/requirements.txt
+#
+# LEARNING NOTE: why "==" (pinning)?
+#   `fastapi==0.143.0` means "exactly this version". Pinning makes the project
+#   reproducible: the code behaves the same next month as it does today.
+#   To upgrade a package, change the number here on purpose and re-install.
+#
+# Each package below is used by ONE clearly named part of the backend, so you
+# can remove or swap a part without touching the others ("plug and play").
+# -----------------------------------------------------------------------------
+
+# --- Web API (backend/app/api/) ----------------------------------------------
+# FastAPI turns Python functions into HTTP endpoints, and it can stream
+# server-sent events (SSE) to the browser for live progress updates.
+fastapi==0.143.0
+
+# Uvicorn is the server program that actually runs a FastAPI app.
+# "[standard]" adds faster networking and auto-reload while developing.
+uvicorn[standard]==0.54.0
+# websockets: live listening for Archy (app/voice/deepgram.py). Also comes with uvicorn[standard].
+websockets==16.1.1
+
+# --- Data contracts and configuration (backend/app/models/) ------------------
+# Pydantic checks that data has the shape we expect (types, required fields).
+pydantic==2.14.1
+
+# pydantic-settings reads configuration from environment variables / .env,
+# and validates it the same way Pydantic validates data.
+pydantic-settings==2.15.0
+
+# --- Agent workflow (backend/app/graph/) -------------------------------------
+# LangGraph lets us describe the workflow as a graph: nodes (steps) joined by
+# edges (what runs next), with shared state passed between them.
+langgraph==1.2.14
+
+# The SQLite "checkpointer" saves the graph's state to a file after each step,
+# so a run can pause for the user and resume even after a server restart.
+langgraph-checkpoint-sqlite==3.1.1
+
+# --- Storage (backend/app/db/) -----------------------------------------------
+# aiosqlite lets async code (like FastAPI) talk to SQLite without blocking.
+aiosqlite==0.22.1
+
+# --- Outbound HTTP (backend/app/research/) -----------------------------------
+# httpx is the HTTP client used to call the GitHub API and fetch documentation.
+httpx==0.28.1
+
+# --- Semantic decisions (backend/app/jev/) -----------------------------------
+# The official TypeSafe SDK for Jev. Imported in code as `typesafe_sdk`.
+typesafe-sdk==0.7.4
+
+# --- LLM provider (backend/app/llm/) -----------------------------------------
+# Not chosen yet. The provider SDK gets added here once a provider is picked.

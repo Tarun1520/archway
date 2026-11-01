@@ -1,0 +1,14 @@
+# What Vercel must never receive. Vercel only hosts the frontend; the backend and everything secret stays out.
+backend/
+**/.env
+**/.env.*
+!**/.env.example
+**/*.db
+**/*.db-shm
+**/*.db-wal
+**/*.sqlite*
+**/data.nosync/
+**/.venv*/
+**/__pycache__/
+docs/reviews/
+.*/

@@ -1,0 +1,7 @@
+flowchart TB
+    subgraph run[One thread 'abc']
+        direction LR
+        s1[after step 1] --> s2[after step 2] --> s3[after step 3]
+    end
+    run -- every step is saved --> db[(Checkpointer)]
+    db -- load later --> resume[Continue from the last save]

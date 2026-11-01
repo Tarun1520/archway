@@ -1,0 +1,21 @@
+flowchart TB
+    subgraph sup[Supervisor]
+        direction TB
+        L1[Lead] <--> A1[Specialist A]
+        L1 <--> B1[Specialist B]
+    end
+    subgraph hand[Handoff / swarm]
+        direction LR
+        A2[Agent A] <--> B2[Agent B]
+        B2 <--> C2[Agent C]
+    end
+    subgraph hier[Hierarchy]
+        direction TB
+        T[Top lead] --> M1[Team lead 1]
+        T --> M2[Team lead 2]
+        M1 --> W1[Worker]
+        M1 --> W2[Worker]
+        M2 --> W3[Worker]
+    end
+    sup ~~~ hand
+    hand ~~~ hier

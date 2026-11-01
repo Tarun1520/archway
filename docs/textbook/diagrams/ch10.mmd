@@ -1,0 +1,8 @@
+sequenceDiagram
+    participant You
+    participant App as Graph
+    You->>App: invoke(...)
+    App-->>You: paused: "What should we build?"
+    Note over App: state is saved, nothing is running
+    You->>App: invoke(Command(resume="a notes app"))
+    App-->>You: finished, answer = "a notes app"

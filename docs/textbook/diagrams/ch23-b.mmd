@@ -1,0 +1,4 @@
+flowchart LR
+    q[Question] --> qe[Embed the<br/>question] --> s{Find the<br/>closest chunks}
+    vs[(Vector store)] --> s
+    s --> p[Prompt =<br/>question + chunks] --> m[Model answers]

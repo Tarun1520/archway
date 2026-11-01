@@ -1,0 +1,54 @@
+{
+  "demo": true,
+  "slug": "03_team_knowledge_base",
+  "title": "Team knowledge base with live sync",
+  "scenario": "Conflicting requirements: 'no paid hosting' cannot hold together with 'always-on multi-user sync'. The conflict must be flagged, not silently resolved.",
+  "idea": "A wiki for my 12 person team. Everyone edits at the same time and sees changes instantly, from anywhere. We don't want to pay for any hosting.",
+  "brief": {
+    "id": "sample-03",
+    "version": 1,
+    "problem": "A small team needs one shared place for documentation that everyone can edit together.",
+    "users": "A team of 12, working from different places.",
+    "must_have": [
+      {
+        "id": "REQ-1",
+        "text": "Several people can edit the same page at the same time"
+      },
+      {
+        "id": "REQ-2",
+        "text": "Changes appear for everyone within seconds, from any network"
+      },
+      {
+        "id": "REQ-3",
+        "text": "Pages are written in markdown"
+      }
+    ],
+    "nice_to_have": [
+      {
+        "id": "NICE-1",
+        "text": "Page history"
+      }
+    ],
+    "stack_preferences": [],
+    "constraints": {
+      "budget": "No paid hosting",
+      "privacy": null,
+      "deployment": "Reachable from anywhere",
+      "stated": []
+    },
+    "assumptions": [],
+    "unknowns": [
+      "Whether the team already runs a server that is always on",
+      "Whether single sign-on is required"
+    ],
+    "conflicts": [
+      {
+        "description": "An always-on service reachable from any network (REQ-2) needs a server that is always running, which conflicts with the 'No paid hosting' budget constraint unless the team already owns such a server.",
+        "requirement_ids": [
+          "REQ-2"
+        ]
+      }
+    ],
+    "confirmed": false
+  }
+}

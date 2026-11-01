@@ -1,0 +1,6 @@
+flowchart LR
+    S((START)) --> N1[Node A<br/>reads and writes the state]
+    N1 --> N2[Node B]
+    N2 --> N3{Edge decides:<br/>go back or finish?}
+    N3 -- back --> N1
+    N3 -- done --> E((END))

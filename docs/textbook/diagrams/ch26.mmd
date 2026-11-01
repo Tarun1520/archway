@@ -1,0 +1,3 @@
+flowchart LR
+    wf[Workflow<br/>runs] --> db[(Saved<br/>events)] --> sse[SSE<br/>endpoint] --> br[Browser shows<br/>progress]
+    br -. reconnects after a reload .-> sse

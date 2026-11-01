@@ -1,0 +1,34 @@
+# Secrets: real keys live in .env and never go into git.
+.env
+.env.*
+!.env.example
+
+# Python
+backend/.venv
+backend/.venv.nosync/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# Runtime data: databases, checkpoints, caches
+*.db
+*.sqlite
+*.sqlite3
+data/
+# ".nosync" also tells iCloud Drive not to sync the folder (a live SQLite file
+# inside a synced folder can be corrupted).
+data.nosync/
+
+# macOS
+.DS_Store
+
+# Separate environments for local services (e.g. the Laya decision model)
+**/.venv.nosync/
+
+# Deployment: the server copy of the built site, and any server env file
+deploy/site/
+deploy/*.env

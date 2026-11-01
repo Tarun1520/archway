@@ -1,0 +1,692 @@
+[
+  {
+    "case": "voice-bot",
+    "parts": {
+      "coverage": 10.0,
+      "precision": 9.1,
+      "efficiency": 4.0,
+      "speed": 6.8,
+      "reliability": 10.0
+    },
+    "score": 8.0,
+    "found": [
+      {
+        "what": "speech-to-text engine",
+        "by": "faster-whisper (PyPI)"
+      },
+      {
+        "what": "text-to-speech engine",
+        "by": "Coqui TTS"
+      },
+      {
+        "what": "web search access",
+        "by": "duckduckgo-search"
+      },
+      {
+        "what": "voice agent pipeline or orchestration",
+        "by": "WhisperLiveKit"
+      }
+    ],
+    "missed": [],
+    "must_not_hits": [],
+    "components": 47,
+    "llm_calls": 76,
+    "minutes": 7.2,
+    "finished": true,
+    "eligibility": {
+      "eligible": 38,
+      "review_required": 3,
+      "unresolved": 4,
+      "excluded": 2
+    },
+    "decisions": {
+      "asked": 137,
+      "answered": 137,
+      "engine": "laya-rl-agent"
+    },
+    "examples": [
+      {
+        "component": "react-native-waveform-recorder",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "flutter_voice_processor",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "audio_waveforms",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "fastapi_websocket_pubsub",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "fastapi_websocket_rpc",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "FastAPI",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "faster-whisper (PyPI)",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "Wordcab Transcribe",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "WhisperLiveKit",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "sherpa-onnx",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "react-native-speech-recognition-kit",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "duckduckgo-search",
+        "status": "eligible",
+        "why": []
+      }
+    ]
+  },
+  {
+    "case": "pdf-study-helper",
+    "parts": {
+      "coverage": 6.0,
+      "precision": 9.1,
+      "efficiency": 6.0,
+      "speed": 9.7,
+      "reliability": 10.0
+    },
+    "score": 8.2,
+    "found": [
+      {
+        "what": "PDF text extraction",
+        "by": "pdfplumber"
+      },
+      {
+        "what": "slide or layout-aware conversion",
+        "by": "python-pptx"
+      },
+      {
+        "what": "vector or text index",
+        "by": "Whoosh"
+      }
+    ],
+    "missed": [
+      {
+        "what": "local embeddings",
+        "by": null
+      },
+      {
+        "what": "local language model runtime",
+        "by": null
+      }
+    ],
+    "must_not_hits": [],
+    "components": 23,
+    "llm_calls": 64,
+    "minutes": 4.3,
+    "finished": true,
+    "eligibility": {
+      "eligible": 19,
+      "review_required": 2,
+      "unresolved": 1,
+      "excluded": 1
+    },
+    "decisions": {
+      "asked": 102,
+      "answered": 102,
+      "engine": "laya-rl-agent"
+    },
+    "examples": [
+      {
+        "component": "pdfplumber",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "pdfminer.six",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "python-pptx",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "Whoosh",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "lunr.py",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "search-index",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "FlexSearch",
+        "status": "unresolved",
+        "why": [
+          "a finished app or demo, to learn from, not a building block to reuse"
+        ]
+      },
+      {
+        "component": "txtai",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "HyperDB",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "BM25S",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "Retriv",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "Cherche",
+        "status": "eligible",
+        "why": []
+      }
+    ]
+  },
+  {
+    "case": "word-designer",
+    "parts": {
+      "coverage": 5.0,
+      "precision": 10.0,
+      "efficiency": 6.5,
+      "speed": 9.9,
+      "reliability": 10.0
+    },
+    "score": 8.3,
+    "found": [
+      {
+        "what": ".docx generation",
+        "by": "python-docx"
+      },
+      {
+        "what": "templating over Word files",
+        "by": "python-docx-template"
+      }
+    ],
+    "missed": [
+      {
+        "what": "document conversion or preview",
+        "by": null
+      },
+      {
+        "what": "desktop UI toolkit",
+        "by": null
+      }
+    ],
+    "must_not_hits": [],
+    "components": 12,
+    "llm_calls": 61,
+    "minutes": 4.1,
+    "finished": true,
+    "eligibility": {
+      "eligible": 8,
+      "review_required": 4,
+      "unresolved": 0,
+      "excluded": 0
+    },
+    "decisions": {
+      "asked": 43,
+      "answered": 43,
+      "engine": "laya-rl-agent"
+    },
+    "examples": [
+      {
+        "component": "python-docx-template",
+        "status": "review_required",
+        "why": [
+          "license LGPL-2.1 is weak copyleft: usable as a library with conditions"
+        ]
+      },
+      {
+        "component": "python-docx",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "python-docx-template",
+        "status": "review_required",
+        "why": [
+          "license LGPL-2.1 is weak copyleft: usable as a library with conditions"
+        ]
+      },
+      {
+        "component": "pywin32",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "python-docx",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "docx-plus",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "python-constraint2",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "CPMpy",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "docx4j-python",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "ooxml-edit",
+        "status": "review_required",
+        "why": [
+          "the license 'NOASSERTION' was not recognised; a person must check it before reuse"
+        ]
+      },
+      {
+        "component": "docx-template-formatter",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "edgemint",
+        "status": "review_required",
+        "why": [
+          "the license 'NOASSERTION' was not recognised; a person must check it before reuse"
+        ]
+      }
+    ]
+  },
+  {
+    "case": "reminder-caller",
+    "parts": {
+      "coverage": 8.0,
+      "precision": 10.0,
+      "efficiency": 7.5,
+      "speed": 9.5,
+      "reliability": 10.0
+    },
+    "score": 9.0,
+    "found": [
+      {
+        "what": "telephony",
+        "by": "twilio-node"
+      },
+      {
+        "what": "job scheduling",
+        "by": "BullMQ"
+      },
+      {
+        "what": "calendar access",
+        "by": "@googleapis/calendar"
+      },
+      {
+        "what": "speech for the call",
+        "by": "@google-cloud/text-to-speech"
+      }
+    ],
+    "missed": [
+      {
+        "what": "push notifications",
+        "by": null
+      }
+    ],
+    "must_not_hits": [],
+    "components": 26,
+    "llm_calls": 55,
+    "minutes": 4.5,
+    "finished": true,
+    "eligibility": {
+      "eligible": 23,
+      "review_required": 1,
+      "unresolved": 0,
+      "excluded": 2
+    },
+    "decisions": {
+      "asked": 120,
+      "answered": 120,
+      "engine": "laya-rl-agent"
+    },
+    "examples": [
+      {
+        "component": "BullMQ",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "Agenda",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "APScheduler",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "Celery",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "twilio-node",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "twilio-python",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "@googleapis/calendar",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "google-api-python-client",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "tsdav",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "ts-caldav",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "twilio-node",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "twilio-python",
+        "status": "eligible",
+        "why": []
+      }
+    ]
+  },
+  {
+    "case": "meeting-notes-bot",
+    "parts": {
+      "coverage": 10.0,
+      "precision": 8.9,
+      "efficiency": 6.0,
+      "speed": 9.0,
+      "reliability": 10.0
+    },
+    "score": 8.8,
+    "found": [
+      {
+        "what": "official Meet or Workspace API client",
+        "by": "@google-apps/meet"
+      },
+      {
+        "what": "browser automation for joining and screenshots",
+        "by": "Playwright"
+      },
+      {
+        "what": "speech-to-text",
+        "by": "@google-cloud/speech"
+      },
+      {
+        "what": "summarisation",
+        "by": "openai"
+      }
+    ],
+    "missed": [],
+    "must_not_hits": [],
+    "components": 28,
+    "llm_calls": 64,
+    "minutes": 5.0,
+    "finished": true,
+    "eligibility": {
+      "eligible": 19,
+      "review_required": 4,
+      "unresolved": 3,
+      "excluded": 2
+    },
+    "decisions": {
+      "asked": 99,
+      "answered": 99,
+      "engine": "laya-rl-agent"
+    },
+    "examples": [
+      {
+        "component": "@google-apps/meet",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "@googleapis/meet",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "Playwright",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "screenappai/meeting-bot",
+        "status": "unresolved",
+        "why": [
+          "a finished app or demo, to learn from, not a building block to reuse"
+        ]
+      },
+      {
+        "component": "recallai/google-meet-meeting-bot",
+        "status": "unresolved",
+        "why": [
+          "a finished app or demo, to learn from, not a building block to reuse"
+        ]
+      },
+      {
+        "component": "GoogleMeet.js",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "@google-cloud/speech",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "@aws-sdk/client-transcribe-streaming",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "microsoft-cognitiveservices-speech-sdk",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "voskJs",
+        "status": "review_required",
+        "why": [
+          "the license 'NOASSERTION' was not recognised; a person must check it before reuse"
+        ]
+      },
+      {
+        "component": "Wyoming Faster Whisper",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "WhisperX API Server",
+        "status": "excluded",
+        "why": [
+          "license GPL-3.0 is strong copyleft; the policy allows permissive licenses only"
+        ]
+      }
+    ]
+  },
+  {
+    "case": "food-photo-nutrition",
+    "parts": {
+      "coverage": 7.5,
+      "precision": 7.5,
+      "efficiency": 9.0,
+      "speed": 10.0,
+      "reliability": 10.0
+    },
+    "score": 8.8,
+    "found": [
+      {
+        "what": "on-device or served vision model runtime",
+        "by": "YOLOv12-FoodWeight"
+      },
+      {
+        "what": "food recognition model or project",
+        "by": "YOLOv12-FoodWeight"
+      },
+      {
+        "what": "nutrition data",
+        "by": "USDA-FoodData-SQLite3"
+      }
+    ],
+    "missed": [
+      {
+        "what": "camera or image capture",
+        "by": null
+      }
+    ],
+    "must_not_hits": [],
+    "components": 28,
+    "llm_calls": 46,
+    "minutes": 3.2,
+    "finished": true,
+    "eligibility": {
+      "eligible": 12,
+      "review_required": 6,
+      "unresolved": 7,
+      "excluded": 3
+    },
+    "decisions": {
+      "asked": 70,
+      "answered": 70,
+      "engine": "laya-rl-agent"
+    },
+    "examples": [
+      {
+        "component": "food-recognition",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "torchvision",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "MediaPipe Tasks Vision",
+        "status": "unresolved",
+        "why": [
+          "a finished app or demo, to learn from, not a building block to reuse"
+        ]
+      },
+      {
+        "component": "@google-cloud/vision",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "ultralytics",
+        "status": "excluded",
+        "why": [
+          "license GNU Affero General Public License v3 or later (AGPLv3+) is strong copyleft; the policy allows permissive licenses only"
+        ]
+      },
+      {
+        "component": "FoodNet",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "USDA-FoodData-SQLite3",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "ComprehensiveFoodDatabase",
+        "status": "eligible",
+        "why": []
+      },
+      {
+        "component": "@pipeworx/mcp-usda-fdc",
+        "status": "unresolved",
+        "why": [
+          "a finished app or demo, to learn from, not a building block to reuse"
+        ]
+      },
+      {
+        "component": "Nutrition Graph (food-graph)",
+        "status": "review_required",
+        "why": [
+          "no license was detected; a person must check it before reuse"
+        ]
+      },
+      {
+        "component": "Ontology-Based Knowledge Graph Application",
+        "status": "review_required",
+        "why": [
+          "no license was detected; a person must check it before reuse"
+        ]
+      },
+      {
+        "component": "PortionNet",
+        "status": "review_required",
+        "why": [
+          "no license was detected; a person must check it before reuse"
+        ]
+      }
+    ]
+  }
+]

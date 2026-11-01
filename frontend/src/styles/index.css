@@ -1,0 +1,660 @@
+/*
+ * Global stylesheet. Loaded once, from main.tsx.
+ * Order matters: fonts, then Tailwind, then our tokens, then base rules.
+ */
+
+/* The font is bundled with the app (no request to a font CDN).            */
+/* The "opsz" file includes Inter's optical-size axis: the browser picks a */
+/* finer, tighter drawing of each letter automatically at headline sizes.  */
+@import '@fontsource-variable/inter/opsz.css';
+/* Cinzel: a serif in the style of carved Roman capitals, used only for the ARCHWAY name. */
+@import '@fontsource-variable/cinzel/wght.css';
+/* The studio's typefaces: Inter Tight for type-as-hero, JetBrains Mono for labels and stats. */
+@import '@fontsource-variable/inter-tight/wght.css';
+@import '@fontsource-variable/jetbrains-mono/wght.css';
+
+@import 'tailwindcss';
+@import 'lenis/dist/lenis.css';
+@import './tokens.css';
+
+@layer base {
+  html {
+    background-color: var(--color-onyx);
+    color-scheme: dark;
+    /* Leaves room for the fixed top bar when jumping to an in-page link. */
+    scroll-padding-top: 88px;
+  }
+
+  body {
+    background-color: var(--color-onyx);
+    color: var(--color-ivory);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Headlines: the in-between weight, never bold. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 480;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* One visible focus style for every interactive element (keyboard users). */
+  /* Cobalt shows up on both the dark and the light screens. */
+  :focus-visible {
+    outline: 2px solid var(--color-cobalt);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background-color: var(--color-cobalt);
+    color: var(--color-white);
+  }
+
+  ::placeholder {
+    color: var(--color-ash);
+    opacity: 1;
+  }
+}
+
+/*
+ * The ARCHWAY name with its two short lines: one above, one below.
+ *
+ * The block sets two sizes that everything else is worked out from:
+ *   --emblem-width  how wide the name is drawn
+ *   --line-size     the font size of the two short lines
+ */
+.wordmark-block {
+  --emblem-width: min(90vw, 1040px);
+  --line-size: clamp(14px, 2.5vw, 35px);
+  width: var(--emblem-width);
+}
+
+/* The two short lines. `line-height: 1` makes each line's box exactly as tall as its font size. */
+@utility text-wordmark-line {
+  font-family: var(--font-wordmark);
+  font-size: var(--line-size);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/*
+ * EQUAL SPACING ABOVE AND BELOW THE NAME
+ *
+ * The aim: the gap from the bottom of the upper line's letters to the top of
+ * the name's letters is the same as the gap from the bottom of the name's
+ * letters to the top of the lower line's letters. That gap is 2.8% of the
+ * name's width.
+ *
+ * Letters do not fill their boxes, so the boxes cannot simply be spaced
+ * evenly. The numbers below remove the empty space on each side:
+ *   - the name's drawing has blank space above its letters (4.12% of its
+ *     width) and below them (4.46%, where its shadow falls)
+ *   - a capital letter in this font ends 19.8% of the font size above the
+ *     bottom of its line box, and starts 8.4% below the top of it
+ * Each margin is: the gap wanted, minus the empty space already there.
+ */
+.wordmark-line-above {
+  margin-bottom: calc(var(--emblem-width) * (0.028 - 0.0412) - var(--line-size) * 0.198);
+}
+
+.wordmark-line-below {
+  margin-top: calc(var(--emblem-width) * (0.028 - 0.0446) - var(--line-size) * 0.084);
+}
+
+/*
+ * The band of light that glides across the ARCHWAY name (the bar itself is
+ * drawn in ArchwayWordmark.tsx). It crosses, then waits off to the right
+ * before the next pass. The distances are in the emblem's own units.
+ */
+.wordmark-glide {
+  transform: skewX(-18deg) translateX(0);
+  animation: wordmark-glide 6s ease-in-out infinite;
+}
+
+@keyframes wordmark-glide {
+  0% {
+    transform: skewX(-18deg) translateX(0);
+  }
+  50%,
+  100% {
+    transform: skewX(-18deg) translateX(1500px);
+  }
+}
+
+/*
+ * A vignette over the hero picture: the middle stays sharp and bright, and
+ * the picture grows blurred and darker toward its sides and corners. It
+ * draws the eye to the desk, the way a camera lens does.
+ *
+ * How it is made:
+ *   - `backdrop-filter` blurs whatever is BEHIND this element (the picture)
+ *   - the dark see-through background dims it
+ *   - `mask-image` then hides this element in the middle and shows it more
+ *     and more toward the edges, so both effects fade in gradually. The oval
+ *     is narrower than it is tall, so the left and right sides get the most.
+ */
+@utility hero-vignette {
+  background-color: rgb(23 23 33 / 0.5);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+  mask-image: radial-gradient(ellipse 62% 82% at 50% 52%, transparent 52%, black 100%);
+  -webkit-mask-image: radial-gradient(ellipse 62% 82% at 50% 52%, transparent 52%, black 100%);
+}
+
+/* A soft dark glow behind the two short lines, so they stay readable over a bright sky. */
+@utility wordmark-line-shadow {
+  text-shadow:
+    0 1px 2px rgb(20 20 30 / 0.7),
+    0 0 18px rgb(20 20 30 / 0.55);
+}
+
+/* The small line under "Scroll": it slides down and fades, over and over. */
+@utility scroll-cue {
+  animation: scroll-cue 1.8s ease-in-out infinite;
+  transform-origin: top;
+}
+
+@keyframes scroll-cue {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.2);
+  }
+  40% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(12px) scaleY(1);
+  }
+}
+
+/* People who ask for reduced motion get still silver letters and a still line. */
+@media (prefers-reduced-motion: reduce) {
+  .wordmark-glide,
+  .scroll-cue {
+    animation: none;
+  }
+}
+
+/* The hero headline scales with the window, between phone and desktop sizes. */
+@utility text-display-fluid {
+  font-size: clamp(38px, 5vw, 65px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* The hero summary under the headline: larger than body text, lighter in weight. */
+@utility text-lead-fluid {
+  font-size: clamp(17px, 1.55vw, 22px);
+  line-height: 1.4;
+}
+
+/*
+ * What the hero shows before the three.js picture has loaded, and instead of
+ * it when the browser has no WebGL: the same dawn sky and dark hill as a
+ * plain gradient.
+ */
+@utility hero-fallback {
+  background: linear-gradient(to top, #171721 0%, #1a2a22 22%, #6f6a78 46%, #8f8189 52%, #454c66 72%, #1d2234 100%);
+}
+
+/* Section headlines scale the same way, one step smaller. */
+@utility text-heading-fluid {
+  font-size: clamp(28px, 3.4vw, 42px);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+
+/*
+ * The morning sky as a background: peach where the sun is coming up (upper
+ * left), clear mist in the middle, pale blue on the right. Used on the light
+ * screens so they feel like a continuation of the hero's picture.
+ */
+@utility bg-morning-sky {
+  background:
+    radial-gradient(ellipse 70% 60% at 12% 0%, var(--color-blush) 0%, transparent 70%),
+    radial-gradient(ellipse 65% 70% at 100% 10%, var(--color-sky) 0%, transparent 72%),
+    var(--color-dawn);
+}
+
+/* A soft, wide shadow that lifts white cards off the light page. */
+@utility shadow-lift {
+  box-shadow:
+    0 1px 2px rgb(28 34 44 / 0.06),
+    0 24px 48px -24px rgb(28 34 44 / 0.22);
+}
+
+/* Very large outlined letters (the moving band of step names): only the edge of each letter is drawn. */
+@utility text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--color-forest) 38%, transparent);
+}
+
+/*
+ * THE GLOW PILL
+ * A white pill with a ring of soft, slowly turning color around it and a
+ * blurred halo of the same colors behind it. Used for the main button and
+ * for the idea input. hooks/useGlow.ts makes it follow the pointer.
+ *
+ * It is built from two extra layers the browser draws for us
+ * ("pseudo-elements"), both behind the pill's text:
+ *
+ *   ::before  THE HALO. A ring of color, slightly larger than the pill and
+ *             heavily blurred, so it spills out as a glow.
+ *   ::after   THE PILL ITSELF. A white fill, with the same ring of color
+ *             showing only in its thin border.
+ *
+ * The colors come from two pictures stacked on top of each other:
+ *   - a bright spot under the pointer (it only shows when the pointer is near)
+ *   - a wheel of color that turns slowly all the time
+ *
+ * The four --glow-* numbers are set by useGlow.ts as the pointer moves.
+ */
+
+/* Tells the browser --glow-turn is an angle, so it can be animated smoothly. */
+@property --glow-turn {
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 0deg;
+}
+
+.glow-pill {
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-near: 0;
+  --glow-hue: 0;
+  --glow-boost: 0;
+
+  position: relative;
+  isolation: isolate; /* keeps the two layers behind this pill only, not behind the page */
+  color: var(--color-ink);
+  animation: glow-turn 10s linear infinite;
+}
+
+/* Hovering, or typing inside, brings the glow up to full strength. */
+.glow-pill:hover,
+.glow-pill:focus-within,
+.glow-pill:focus-visible {
+  --glow-boost: 1;
+}
+
+.glow-pill::before,
+.glow-pill::after {
+  content: '';
+  position: absolute;
+  border-radius: inherit;
+  pointer-events: none;
+  --glow-colors:
+    radial-gradient(circle 110px at var(--glow-x) var(--glow-y), rgb(255 255 255 / calc(0.85 * var(--glow-near))), transparent 70%),
+    conic-gradient(from var(--glow-turn), #ff8fb8, #c79bff, #7fb2ff, #7fe3d4, #ffc27a, #ff9a6b, #ff8fb8);
+}
+
+/* The halo. */
+.glow-pill::before {
+  inset: -7px;
+  z-index: -2;
+  background: var(--glow-colors);
+  filter: blur(16px) saturate(1.35) hue-rotate(calc(var(--glow-hue) * 1deg));
+  opacity: calc(0.62 + 0.23 * var(--glow-near) + 0.15 * var(--glow-boost));
+  transition: opacity 300ms ease;
+}
+
+/* The pill: a white fill inside (padding-box), the colors in its border (border-box). */
+.glow-pill::after {
+  inset: 0;
+  z-index: -1;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    var(--glow-colors) border-box;
+  filter: hue-rotate(calc(var(--glow-hue) * 1deg));
+}
+
+@keyframes glow-turn {
+  to {
+    --glow-turn: 360deg;
+  }
+}
+
+/* With reduced motion on, the colors stay where they are. */
+@media (prefers-reduced-motion: reduce) {
+  .glow-pill {
+    animation: none;
+  }
+}
+
+
+/* ---- AI suggestions ---------------------------------------------------------
+   Anything the model wrote sits in a panel with a sparkle and an "AI" label,
+   and while it is being written a soft shimmer runs across placeholder lines.
+   The shimmer is purely a "working" signal: it stops as soon as the answer
+   arrives, and it is still for people who ask for reduced motion. */
+@keyframes ai-shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+.ai-shimmer {
+  background-image: linear-gradient(90deg, rgb(237 237 243 / 6%) 25%, rgb(237 237 243 / 18%) 50%, rgb(237 237 243 / 6%) 75%);
+  background-size: 200% 100%;
+  animation: ai-shimmer 1.8s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-shimmer {
+    animation: none;
+  }
+}
+
+/* The AI glow: the welcome page's glowing pill, made for a dark panel. The
+   same slowly turning wheel of colors shows in a thin border and as a soft,
+   blurred halo behind; the fill stays dark so the text stays readable.
+   hooks/useGlow.ts makes it brighten as the pointer comes near (same
+   --glow-* numbers as .glow-pill). */
+.ai-glow {
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-near: 0;
+  --glow-hue: 0;
+  --glow-boost: 0;
+
+  position: relative;
+  isolation: isolate;
+  animation: glow-turn 10s linear infinite;
+}
+.ai-glow:hover,
+.ai-glow:focus-within {
+  --glow-boost: 1;
+}
+.ai-glow::before,
+.ai-glow::after {
+  content: '';
+  position: absolute;
+  border-radius: inherit;
+  pointer-events: none;
+  --glow-colors:
+    radial-gradient(circle 160px at var(--glow-x) var(--glow-y), rgb(255 255 255 / calc(0.7 * var(--glow-near))), transparent 70%),
+    conic-gradient(from var(--glow-turn), #ff8fb8, #c79bff, #7fb2ff, #7fe3d4, #ffc27a, #ff9a6b, #ff8fb8);
+}
+/* The halo: a little softer than the welcome pill's, as a panel is much bigger. */
+.ai-glow::before {
+  inset: -6px;
+  z-index: -2;
+  background: var(--glow-colors);
+  filter: blur(18px) saturate(1.35) hue-rotate(calc(var(--glow-hue) * 1deg));
+  opacity: calc(0.42 + 0.23 * var(--glow-near) + 0.15 * var(--glow-boost));
+  transition: opacity 300ms ease;
+}
+/* The panel: a dark fill inside, the colors only in its 2px border. */
+.ai-glow::after {
+  inset: 0;
+  z-index: -1;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(#111013, #111013) padding-box,
+    var(--glow-colors) border-box;
+  filter: hue-rotate(calc(var(--glow-hue) * 1deg));
+}
+
+/* The AI sparkle: the same colors, turning, with a small glow of its own. */
+@keyframes ai-sparkle-hue {
+  to { filter: hue-rotate(360deg) drop-shadow(0 0 5px currentColor); }
+}
+.ai-sparkle {
+  color: #ff8fb8;
+  filter: hue-rotate(0deg) drop-shadow(0 0 5px currentColor);
+  animation: ai-sparkle-hue 10s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-glow,
+  .ai-sparkle {
+    animation: none;
+  }
+}
+
+
+/* =============================================================================
+ * Studio (Bold Typography)
+ * ========================================================================== */
+
+/* Headlines in the studio are bold and tight; nothing is rounded. */
+.studio-theme :is(h1, h2, h3) {
+  font-weight: 700;
+}
+
+/* A very faint grain over the whole studio, for a printed, tactile feel. */
+.studio-theme::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* The primary button inside the studio: text in the accent, with an underline
+   that stretches a little on hover. No fill, no glow (the welcome page keeps
+   its glowing pill). */
+.studio-theme .glow-pill {
+  animation: none;
+  color: var(--color-vermilion);
+  background: transparent;
+  padding-inline: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  font-size: 14px;
+  transition: transform 150ms var(--ease-crisp), opacity 150ms;
+}
+.studio-theme .glow-pill::before {
+  display: none;
+}
+.studio-theme .glow-pill::after {
+  inset: auto 0 6px 0;
+  height: 2px;
+  border: 0;
+  background: var(--color-vermilion);
+  filter: none;
+  transform-origin: left;
+  transition: transform 150ms var(--ease-crisp);
+}
+.studio-theme .glow-pill:hover::after {
+  transform: scaleX(1.1);
+}
+.studio-theme .glow-pill:active {
+  transform: translateY(1px);
+}
+
+/* The typing cursor at the end of the newest thought (AgentThoughts.tsx). */
+@keyframes caret-blink {
+  50% { opacity: 0; }
+}
+.caret {
+  animation: caret-blink 0.9s steps(1) infinite;
+}
+
+/* --- The agents corner: small robots that show the team at work ---------- */
+@keyframes bot-scan {
+  0%, 100% { transform: translateX(-2px); }
+  50% { transform: translateX(2px); }
+}
+@keyframes bot-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+@keyframes bot-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+@keyframes live-pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--color-vermilion) 60%, transparent); }
+  100% { box-shadow: 0 0 0 8px transparent; }
+}
+.bot-working .bot-eyes {
+  animation: bot-scan 1.2s var(--ease-crisp) infinite;
+}
+.bot-working .bot-antenna {
+  animation: bot-blink 0.8s steps(2, jump-none) infinite;
+}
+.bot-working .bot-body {
+  animation: bot-bob 1.6s ease-in-out infinite;
+}
+.live-dot {
+  animation: live-pulse 1.4s ease-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .bot-working .bot-eyes,
+  .bot-working .bot-antenna,
+  .bot-working .bot-body,
+  .live-dot {
+    animation: none;
+  }
+}
+
+
+/* --- Archy, the voice agent (components/studio/archy/) ------------------------
+   The portal's ring of ticks turns slowly; its core breathes while Archy is
+   away and shines while Archy is out. Archy blinks now and then. All of it is
+   switched off for people who ask for reduced motion. */
+@keyframes archy-ticks {
+  to { stroke-dashoffset: -100; }
+}
+@keyframes archy-breathe {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 0.8; }
+}
+@keyframes archy-invite {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(127 232 255 / 0); }
+  50% { box-shadow: 0 0 18px 2px rgb(127 232 255 / 0.28); }
+}
+
+.archy-portal-ticks {
+  animation: archy-ticks 9s linear infinite;
+}
+.archy-portal-off .archy-portal-ticks { opacity: 0.35; animation-duration: 18s; }
+.archy-portal-off .archy-portal-core,
+.archy-portal-off .archy-portal-halo { animation: archy-breathe 3.2s ease-in-out infinite; }
+.archy-portal-off .archy-portal-beam { opacity: 0.18; }
+.archy-portal-on .archy-portal-beam { opacity: 0.9; transition: opacity 600ms; }
+.archy-portal-core, .archy-portal-halo, .archy-portal-beam { transition: opacity 600ms; }
+
+.archy-invite { animation: archy-invite 2.6s ease-in-out infinite; }
+.archy-live-dot { animation: live-pulse 1.6s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .archy-portal-ticks, .archy-portal-core, .archy-portal-halo, .archy-invite, .archy-live-dot {
+    animation: none;
+  }
+}
+
+
+/* ---- Scrollbars: thin and quiet, everywhere --------------------------------
+   A slim thumb in a see-through grey that works on both the light welcome page
+   and the dark studio, no track, a little stronger when pointed at. Browsers
+   that know `scrollbar-width` (Chrome, Firefox, newer Safari) use the standard
+   properties; older WebKit gets the matching pseudo-elements. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(128 128 128 / 0.35) transparent;
+}
+*:hover {
+  scrollbar-color: rgb(128 128 128 / 0.6) transparent;
+}
+@supports not (scrollbar-color: auto) {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track,
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: rgb(128 128 128 / 0.35);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(128 128 128 / 0.6);
+  }
+}
+
+
+/* --- Who decided: the LAYA and RULES badges (components/studio/DecisionBadge.tsx) -----
+   Laya's badge has a small cyan light that breathes, so a decision a model made is easy to
+   tell from one plain code made. Still when reduced motion is on. */
+@keyframes laya-glow {
+  0%, 100% { box-shadow: 0 0 4px 0 rgba(127, 232, 255, 0.55); }
+  50% { box-shadow: 0 0 10px 2px rgba(127, 232, 255, 0.85); }
+}
+.laya-dot { animation: laya-glow 2.4s ease-in-out infinite; }
+/* The same breathing light for the research-source labels on the welcome page (components/welcome/Toolbox.tsx),
+   in each source's own color (--dot). */
+@keyframes source-glow {
+  0%, 100% { box-shadow: 0 0 3px 0 color-mix(in srgb, var(--dot) 45%, transparent); }
+  50% { box-shadow: 0 0 9px 2px color-mix(in srgb, var(--dot) 70%, transparent); }
+}
+.source-dot { background: var(--dot); animation: source-glow 2.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .source-dot { animation: none; }
+  .laya-dot { animation: none; box-shadow: 0 0 6px 1px rgba(127, 232, 255, 0.7); }
+}
+
+/* --- The build flow chart (components/studio/plan/PlanFlow.tsx) -------------------------------------------------
+   Once the chart has drawn itself, a short bright dash travels along every arrow, slowly and forever, so the flow
+   of the work reads at a glance. Off when reduced motion is on (the component does not draw it then either). */
+@keyframes plan-flow-travel {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -260; }
+}
+@keyframes plan-flow-appear {
+  to { stroke-opacity: 0.9; }
+}
+/* Invisible until its delay (set on the element: after the chart has drawn), then it fades in and keeps moving. */
+.plan-flow-pulse {
+  stroke-dasharray: 14 246;
+  stroke-opacity: 0;
+  animation: plan-flow-travel 3.2s linear infinite, plan-flow-appear 0.6s ease-out forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .plan-flow-pulse { display: none; }
+}
+
+/* --- The sign-in page's mist (components/auth/LoginPage.tsx) ------------------------------------------------------
+   Three soft banks of morning mist drift across the valley at different speeds and heights, over the hero picture.
+   Hidden with reduced motion (the component does not draw them then either). */
+.login-mist {
+  position: absolute;
+  left: -40%;
+  width: 80%;
+  border-radius: 9999px;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 70%);
+  filter: blur(18px);
+  animation: login-mist-drift linear infinite;
+}
+.login-mist-a { top: 10%; height: 55%; animation-duration: 70s; }
+.login-mist-b { top: 40%; height: 45%; animation-duration: 95s; animation-delay: -40s; opacity: 0.8; }
+.login-mist-c { top: 0%; height: 35%; animation-duration: 120s; animation-delay: -75s; opacity: 0.6; }
+@keyframes login-mist-drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(175%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .login-mist { display: none; }
+}

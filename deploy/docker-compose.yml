@@ -1,0 +1,47 @@
+# Archway on one server: Caddy (HTTPS, the only thing reachable from the internet) -> backend -> Laya.
+#   docker compose up -d --build
+#
+# Laya is OPTIONAL. It needs about 2 GB of memory, more than a small free server has (Azure for Students' free
+# B2ats v2 has 1 GB). It only starts when the "laya" profile is switched on:
+#   COMPOSE_PROFILES=laya docker compose up -d --build
+# Without it, research still finishes: each decision is recorded as "not evaluated" with a note, and the
+# eligibility rules decide on their own.
+services:
+  backend:
+    build: { context: .., dockerfile: deploy/backend.Dockerfile }
+    restart: unless-stopped
+    env_file: backend.env          # the secrets and settings: created on the server, never committed
+    environment:
+      ARCHWAY_DATA_DIR: /data
+      DECISION_PROVIDER: laya
+      DECISION_URL: http://laya:8100
+      COOKIE_SECURE: "true"
+      AUTH_ENABLED: "true"
+    volumes: [ "archway-data:/data" ]
+    expose: [ "8000" ]
+
+  laya:
+    profiles: [ "laya" ]           # off unless COMPOSE_PROFILES=laya (see the top of this file)
+    build: { context: .., dockerfile: deploy/laya.Dockerfile }
+    restart: unless-stopped
+    volumes: [ "laya-models:/models" ]
+    expose: [ "8100" ]
+
+  caddy:
+    image: caddy:2.10
+    restart: unless-stopped
+    ports: [ "80:80", "443:443" ]
+    environment:
+      ARCHWAY_DOMAIN: ${ARCHWAY_DOMAIN}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./site:/srv/site:ro          # the built frontend (also served here, so the whole app works at this address)
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on: [ backend ]
+
+volumes:
+  archway-data:     # the database and the run checkpoints: survives restarts and rebuilds
+  laya-models:      # Laya's model files (downloaded once)
+  caddy-data:       # the HTTPS certificates
+  caddy-config:

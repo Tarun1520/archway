@@ -1,0 +1,17 @@
+# The build context is the repository root: send only what the images need, never secrets or data.
+**/.env
+**/.env.*
+**/*.db*
+**/data.nosync
+**/.venv*
+**/__pycache__
+**/node_modules
+frontend
+docs
+.*
+.git
+backend/tests
+backend/learning
+backend/services/laya/.venv.nosync
+deploy/site
+deploy/*.env

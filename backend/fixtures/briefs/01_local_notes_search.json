@@ -1,0 +1,59 @@
+{
+  "demo": true,
+  "slug": "01_local_notes_search",
+  "title": "Local notes app with semantic search",
+  "scenario": "Multiple viable architectures: several mature open-source options exist, so more than one meaningfully different option should be offered.",
+  "idea": "I want a notes app that runs on my own laptop, stores notes as markdown files, and lets me search by meaning, not just keywords.",
+  "brief": {
+    "id": "sample-01",
+    "version": 1,
+    "problem": "Keep personal notes as plain markdown files on one machine and find them by meaning as well as by keyword.",
+    "users": "One person, on their own laptop.",
+    "must_have": [
+      {
+        "id": "REQ-1",
+        "text": "Notes are stored as plain markdown files the user can open in any editor"
+      },
+      {
+        "id": "REQ-2",
+        "text": "Search by meaning (semantic search) across all notes"
+      },
+      {
+        "id": "REQ-3",
+        "text": "Works fully offline"
+      }
+    ],
+    "nice_to_have": [
+      {
+        "id": "NICE-1",
+        "text": "Backlinks between notes"
+      },
+      {
+        "id": "NICE-2",
+        "text": "Tags"
+      }
+    ],
+    "stack_preferences": [
+      "Python or TypeScript"
+    ],
+    "constraints": {
+      "budget": "No paid services",
+      "privacy": "Notes never leave the machine",
+      "deployment": "Local desktop or local web app",
+      "stated": []
+    },
+    "assumptions": [
+      {
+        "id": "ASM-1",
+        "text": "A single user; no accounts or sharing",
+        "reason": "The idea mentions only 'my own laptop'"
+      }
+    ],
+    "unknowns": [
+      "How many notes (hundreds or hundreds of thousands)",
+      "Whether a GPU is available for embeddings"
+    ],
+    "conflicts": [],
+    "confirmed": false
+  }
+}

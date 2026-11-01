@@ -1,0 +1,46 @@
+{
+  "demo": true,
+  "slug": "07_bookmark_manager",
+  "title": "Simple personal bookmark manager",
+  "scenario": "Single clear option: a small, well-understood problem where one simple architecture is enough. Offering three options would be padding.",
+  "idea": "A tiny web app to save links with a title and a few tags, and find them again later. Just for me.",
+  "brief": {
+    "id": "sample-07",
+    "version": 1,
+    "problem": "Save web links with a title and tags, and find them again.",
+    "users": "One person.",
+    "must_have": [
+      {
+        "id": "REQ-1",
+        "text": "Save a link with a title and tags"
+      },
+      {
+        "id": "REQ-2",
+        "text": "Filter saved links by tag and by text"
+      }
+    ],
+    "nice_to_have": [
+      {
+        "id": "NICE-1",
+        "text": "Import bookmarks exported from a browser"
+      }
+    ],
+    "stack_preferences": [],
+    "constraints": {
+      "budget": "No paid services",
+      "privacy": null,
+      "deployment": "Runs locally",
+      "stated": []
+    },
+    "assumptions": [
+      {
+        "id": "ASM-1",
+        "text": "No login is needed",
+        "reason": "It is described as 'just for me'"
+      }
+    ],
+    "unknowns": [],
+    "conflicts": [],
+    "confirmed": false
+  }
+}

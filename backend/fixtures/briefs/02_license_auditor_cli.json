@@ -1,0 +1,53 @@
+{
+  "demo": true,
+  "slug": "02_license_auditor_cli",
+  "title": "Dependency license auditor (CLI)",
+  "scenario": "Missing license: the most relevant candidate repository has no license on record, so it must be marked review_required, not approved for reuse.",
+  "idea": "A command line tool that scans my project's dependencies and tells me which licenses they use and which ones break our company policy.",
+  "brief": {
+    "id": "sample-02",
+    "version": 1,
+    "problem": "Developers cannot easily see which dependency licenses a project pulls in, or whether any break a stated policy.",
+    "users": "Developers and tech leads checking a repository before release.",
+    "must_have": [
+      {
+        "id": "REQ-1",
+        "text": "Scan a project and list every dependency with its license"
+      },
+      {
+        "id": "REQ-2",
+        "text": "Compare the result with a configurable allow/deny policy"
+      },
+      {
+        "id": "REQ-3",
+        "text": "Exit with a non-zero code when the policy is broken, for use in CI"
+      }
+    ],
+    "nice_to_have": [
+      {
+        "id": "NICE-1",
+        "text": "Support more than one package ecosystem"
+      }
+    ],
+    "stack_preferences": [],
+    "constraints": {
+      "budget": null,
+      "privacy": "Must run without uploading the dependency list anywhere",
+      "deployment": "Command line tool",
+      "stated": []
+    },
+    "assumptions": [
+      {
+        "id": "ASM-1",
+        "text": "Python and JavaScript projects are the first targets",
+        "reason": "No ecosystem was stated"
+      }
+    ],
+    "unknowns": [
+      "Which package ecosystems matter most",
+      "What the company policy actually allows"
+    ],
+    "conflicts": [],
+    "confirmed": false
+  }
+}

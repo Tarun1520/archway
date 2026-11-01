@@ -1,0 +1,4 @@
+flowchart LR
+    m[Model writes JSON] --> v{Pydantic<br/>checks the shape}
+    v -- valid --> ok[Use it]
+    v -- invalid --> bad[Reject with a clear reason<br/>or ask again]

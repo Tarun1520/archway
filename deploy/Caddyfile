@@ -1,0 +1,32 @@
+# Caddy gets and renews the HTTPS certificate for ARCHWAY_DOMAIN by itself (Let's Encrypt).
+{$ARCHWAY_DOMAIN} {
+	encode zstd gzip
+
+	# The API (including the live-progress stream and the voice WebSocket): straight to the backend.
+	handle /api/* {
+		reverse_proxy backend:8000 {
+			flush_interval -1    # pass streamed events on at once
+		}
+	}
+
+	# Everything else: the built frontend, with the same security headers as on Vercel.
+	handle {
+		root * /srv/site
+		try_files {path} /index.html
+		file_server
+		# The page itself is checked on every visit, so a new deploy shows at once. Its scripts and styles
+		# (in /assets/, named after their content) can be kept: a new version gets a new name.
+		@page not path /assets/*
+		header @page Cache-Control "no-cache"
+		header {
+			Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' blob:; connect-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+			X-Frame-Options "DENY"
+			X-Content-Type-Options "nosniff"
+			Referrer-Policy "no-referrer"
+			Strict-Transport-Security "max-age=63072000; includeSubDomains"
+			Cross-Origin-Opener-Policy "same-origin"
+			Permissions-Policy "camera=(), geolocation=(), payment=(), usb=(), microphone=(self)"
+			-Server
+		}
+	}
+}

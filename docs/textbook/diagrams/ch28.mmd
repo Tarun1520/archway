@@ -1,0 +1,5 @@
+flowchart LR
+    t1[Prompt injection:<br/>text in a web page<br/>tells the model what to do] --> d1[Treat retrieved text as data,<br/>never as orders]
+    t2[Leaked keys:<br/>a secret reaches the<br/>browser or a log] --> d2[Keys stay on the server,<br/>read from settings,<br/>scrubbed from logs]
+    t3[SSRF:<br/>a tool is tricked into calling<br/>internal addresses] --> d3[Check every address first:<br/>only public https]
+    t4[Runaway cost:<br/>a loop spends<br/>your budget] --> d4[Budgets, caps, timeouts]

@@ -1,0 +1,550 @@
+{
+  "about": "Research-stage evaluation set. Each case is an idea plus the components a good answer MUST surface (each group is satisfied by any one of its aliases, matched case-insensitively against a component's name or source) and ones that must NOT appear. The aliases are well-known, long-lived projects in each field, chosen so that missing all of them means the research missed the field's standard tools. Cases marked set=tuned were used while improving the agents; cases marked set=holdout were added afterwards, from unrelated fields, and no prompt was ever tuned on them, so their score shows how well the system generalises.",
+  "cases": [
+    {
+      "id": "voice-bot",
+      "idea": "A mobile voice chat bot: users speak a question, the bot searches the internet and answers in short natural language with a human-like voice. Use React Native or Flutter and a Python FastAPI backend. Keep running costs low and do not keep voice recordings.",
+      "must_find": [
+        {
+          "what": "speech-to-text engine",
+          "any_of": [
+            "whisper",
+            "vosk",
+            "sherpa-onnx",
+            "@google-cloud/speech",
+            "deepgram",
+            "speech-recognition"
+          ]
+        },
+        {
+          "what": "text-to-speech engine",
+          "any_of": [
+            "piper",
+            "kokoro",
+            "coqui",
+            "react-native-tts",
+            "expo-speech",
+            "flutter_tts",
+            "text-to-speech",
+            "polly"
+          ]
+        },
+        {
+          "what": "web search access",
+          "any_of": [
+            "searxng",
+            "brave",
+            "tavily",
+            "serpapi",
+            "duckduckgo",
+            "google-search",
+            "bing",
+            "web-search"
+          ]
+        },
+        {
+          "what": "voice agent pipeline or orchestration",
+          "any_of": [
+            "pipecat",
+            "livekit",
+            "langchain",
+            "langgraph",
+            "llamaindex",
+            "dograh",
+            "willow",
+            "mastra"
+          ]
+        }
+      ],
+      "must_not": [],
+      "set": "tuned"
+    },
+    {
+      "id": "pdf-study-helper",
+      "idea": "A study helper where students upload lecture PDFs and slide decks and ask questions answered from their own documents with citations to the page. It should run on a student's laptop and be free.",
+      "must_find": [
+        {
+          "what": "PDF text extraction",
+          "any_of": [
+            "pymupdf",
+            "pdfplumber",
+            "pypdf",
+            "pdfminer",
+            "pdf.js",
+            "pdfjs",
+            "unpdf"
+          ]
+        },
+        {
+          "what": "slide or layout-aware conversion",
+          "any_of": [
+            "python-pptx",
+            "docling",
+            "unstructured",
+            "marker",
+            "markitdown"
+          ]
+        },
+        {
+          "what": "local embeddings",
+          "any_of": [
+            "sentence-transformers",
+            "fastembed",
+            "nomic",
+            "ollama",
+            "transformers",
+            "embedding"
+          ]
+        },
+        {
+          "what": "vector or text index",
+          "any_of": [
+            "faiss",
+            "chroma",
+            "qdrant",
+            "lancedb",
+            "sqlite-vec",
+            "hnswlib",
+            "rank-bm25",
+            "tantivy",
+            "whoosh",
+            "milvus"
+          ]
+        },
+        {
+          "what": "local language model runtime",
+          "any_of": [
+            "llama.cpp",
+            "llama-cpp",
+            "ollama",
+            "llamafile",
+            "gpt4all",
+            "vllm",
+            "transformers"
+          ]
+        }
+      ],
+      "must_not": [],
+      "set": "tuned"
+    },
+    {
+      "id": "word-designer",
+      "idea": "A desktop application that automatically designs Microsoft Word documents from provided content and a chosen design style, so they look human-made. Many people in one organisation use it. Prefer open-source, keep documents on our own machines. Python preferred.",
+      "must_find": [
+        {
+          "what": ".docx generation",
+          "any_of": [
+            "python-docx",
+            "docx"
+          ]
+        },
+        {
+          "what": "templating over Word files",
+          "any_of": [
+            "docxtpl",
+            "docx-template",
+            "docxcompose",
+            "python-docx-template"
+          ]
+        },
+        {
+          "what": "document conversion or preview",
+          "any_of": [
+            "pandoc",
+            "libreoffice",
+            "unoconv",
+            "docx2pdf",
+            "mammoth",
+            "soffice"
+          ]
+        },
+        {
+          "what": "desktop UI toolkit",
+          "any_of": [
+            "pyside",
+            "pyqt",
+            "electron",
+            "tauri",
+            "wxpython",
+            "tkinter",
+            "flet",
+            "nicegui"
+          ]
+        }
+      ],
+      "must_not": [],
+      "set": "tuned"
+    },
+    {
+      "id": "reminder-caller",
+      "idea": "A mobile app where AI bots act like personal caretakers: they phone the user to remind them about the reminders they set. Multiple user accounts, reminders synced from Google and Apple Calendar, simple text-to-speech voice messages, failed calls logged with a push-notification fallback. React Native or Flutter, Node or Python backend, Twilio for calls. Keep costs low.",
+      "must_find": [
+        {
+          "what": "telephony",
+          "any_of": [
+            "twilio",
+            "vonage",
+            "plivo",
+            "jambonz",
+            "asterisk"
+          ]
+        },
+        {
+          "what": "job scheduling",
+          "any_of": [
+            "bullmq",
+            "bull",
+            "agenda",
+            "celery",
+            "apscheduler",
+            "rq",
+            "pg-boss",
+            "node-cron",
+            "temporal"
+          ]
+        },
+        {
+          "what": "push notifications",
+          "any_of": [
+            "expo-notifications",
+            "messaging",
+            "notifee",
+            "awesome_notifications",
+            "flutter_local_notifications",
+            "push"
+          ]
+        },
+        {
+          "what": "calendar access",
+          "any_of": [
+            "googleapis",
+            "calendar",
+            "google-api-python-client",
+            "caldav",
+            "ical"
+          ]
+        },
+        {
+          "what": "speech for the call",
+          "any_of": [
+            "text-to-speech",
+            "polly",
+            "piper",
+            "tts",
+            "expo-speech"
+          ]
+        }
+      ],
+      "must_not": [],
+      "set": "tuned"
+    },
+    {
+      "id": "meeting-notes-bot",
+      "idea": "A bot that joins our team's Google Meet calls, writes a full transcript, takes screenshots, and produces minutes of the meeting. Cloud service, Node.js with TypeScript, PostgreSQL. It must follow Google's terms of service.",
+      "must_find": [
+        {
+          "what": "official Meet or Workspace API client",
+          "any_of": [
+            "@google-apps/meet",
+            "@googleapis/meet",
+            "googleapis",
+            "google-auth-library"
+          ]
+        },
+        {
+          "what": "browser automation for joining and screenshots",
+          "any_of": [
+            "puppeteer",
+            "playwright",
+            "selenium"
+          ]
+        },
+        {
+          "what": "speech-to-text",
+          "any_of": [
+            "whisper",
+            "@google-cloud/speech",
+            "deepgram",
+            "assemblyai",
+            "vosk",
+            "transcribe",
+            "speech"
+          ]
+        },
+        {
+          "what": "summarisation",
+          "any_of": [
+            "langchain",
+            "openai",
+            "llamaindex",
+            "summar",
+            "minutes",
+            "ollama"
+          ]
+        }
+      ],
+      "must_not": [],
+      "set": "tuned"
+    },
+    {
+      "id": "food-photo-nutrition",
+      "idea": "A mobile app that takes a photo of a meal and shows its calories and macros, using a nutrition database. iOS and Android, low running costs, users can correct the detected foods.",
+      "must_find": [
+        {
+          "what": "on-device or served vision model runtime",
+          "any_of": [
+            "tensorflow",
+            "tfjs",
+            "tflite",
+            "onnxruntime",
+            "onnx",
+            "ultralytics",
+            "yolo",
+            "pytorch",
+            "torch",
+            "mediapipe",
+            "fast-tflite"
+          ]
+        },
+        {
+          "what": "food recognition model or project",
+          "any_of": [
+            "food",
+            "nutrition5k",
+            "food-101",
+            "food101"
+          ]
+        },
+        {
+          "what": "nutrition data",
+          "any_of": [
+            "openfoodfacts",
+            "usda",
+            "fooddata",
+            "nutrition",
+            "edamam",
+            "fdc"
+          ]
+        },
+        {
+          "what": "camera or image capture",
+          "any_of": [
+            "vision-camera",
+            "expo-camera",
+            "image-picker",
+            "camera"
+          ]
+        }
+      ],
+      "must_not": [],
+      "set": "tuned"
+    },
+    {
+      "id": "release-notes-cli",
+      "set": "holdout",
+      "idea": "A command-line tool that reads a git repository's commit history and writes human-readable release notes for each version. Developers run it locally or in CI. Python preferred.",
+      "must_find": [
+        {
+          "what": "reading git history",
+          "any_of": [
+            "gitpython",
+            "pygit2",
+            "dulwich",
+            "simple-git",
+            "nodegit",
+            "isomorphic-git",
+            "git-cliff",
+            "libgit2"
+          ]
+        },
+        {
+          "what": "commit parsing or changelog generation",
+          "any_of": [
+            "conventional",
+            "commitizen",
+            "changelog",
+            "semantic-release",
+            "release-please",
+            "git-cliff",
+            "towncrier"
+          ]
+        },
+        {
+          "what": "command-line interface framework",
+          "any_of": [
+            "click",
+            "typer",
+            "argparse",
+            "fire",
+            "docopt",
+            "rich",
+            "cobra",
+            "commander",
+            "yargs",
+            "oclif"
+          ]
+        },
+        {
+          "what": "text generation or templating",
+          "any_of": [
+            "jinja",
+            "langchain",
+            "openai",
+            "ollama",
+            "transformers",
+            "llama",
+            "mustache",
+            "template"
+          ]
+        }
+      ],
+      "must_not": []
+    },
+    {
+      "id": "sensor-dashboard",
+      "set": "holdout",
+      "idea": "A home dashboard that reads temperature and humidity sensors over MQTT, stores the readings as time series, and shows live and historical charts in the browser. Runs on a Raspberry Pi.",
+      "must_find": [
+        {
+          "what": "MQTT messaging",
+          "any_of": [
+            "mqtt",
+            "mosquitto",
+            "paho",
+            "emqx",
+            "hivemq",
+            "nanomq"
+          ]
+        },
+        {
+          "what": "time-series storage",
+          "any_of": [
+            "influx",
+            "timescale",
+            "questdb",
+            "victoriametrics",
+            "prometheus",
+            "tdengine",
+            "sqlite",
+            "duckdb"
+          ]
+        },
+        {
+          "what": "charts or dashboard",
+          "any_of": [
+            "grafana",
+            "chart.js",
+            "chartjs",
+            "echarts",
+            "plotly",
+            "recharts",
+            "uplot",
+            "d3",
+            "apexcharts",
+            "dashboard"
+          ]
+        }
+      ],
+      "must_not": []
+    },
+    {
+      "id": "craft-shop",
+      "set": "holdout",
+      "idea": "An online shop for a small handmade-goods business: product catalogue with photos, shopping cart, card payments, and order confirmation emails. Low running cost.",
+      "must_find": [
+        {
+          "what": "e-commerce engine or cart",
+          "any_of": [
+            "medusa",
+            "saleor",
+            "woocommerce",
+            "vendure",
+            "spree",
+            "prestashop",
+            "sylius",
+            "magento",
+            "commerce",
+            "cart"
+          ]
+        },
+        {
+          "what": "card payments",
+          "any_of": [
+            "stripe",
+            "paypal",
+            "braintree",
+            "adyen",
+            "mollie",
+            "square",
+            "payment"
+          ]
+        },
+        {
+          "what": "transactional email",
+          "any_of": [
+            "nodemailer",
+            "sendgrid",
+            "postmark",
+            "mailgun",
+            "resend",
+            "smtp",
+            "mail",
+            "ses"
+          ]
+        }
+      ],
+      "must_not": []
+    },
+    {
+      "id": "group-trivia-game",
+      "set": "holdout",
+      "idea": "A browser trivia game where a host starts a room and up to 20 friends join from their phones and answer questions in real time, with a live scoreboard.",
+      "must_find": [
+        {
+          "what": "real-time messaging between players",
+          "any_of": [
+            "socket.io",
+            "colyseus",
+            "websocket",
+            "ws",
+            "partykit",
+            "ably",
+            "pusher",
+            "nakama",
+            "liveblocks",
+            "supabase",
+            "firebase",
+            "webrtc",
+            "peerjs"
+          ]
+        },
+        {
+          "what": "room or game-state server",
+          "any_of": [
+            "colyseus",
+            "nakama",
+            "boardgame.io",
+            "partykit",
+            "socket.io",
+            "lance",
+            "room"
+          ]
+        },
+        {
+          "what": "browser UI or rendering",
+          "any_of": [
+            "react",
+            "vue",
+            "svelte",
+            "phaser",
+            "pixi",
+            "next",
+            "solid",
+            "angular"
+          ]
+        }
+      ],
+      "must_not": []
+    }
+  ]
+}

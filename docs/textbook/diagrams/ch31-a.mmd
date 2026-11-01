@@ -1,0 +1,16 @@
+flowchart TB
+    U[Person in the studio] -->|idea| R{Enough to start?<br/>plain-code check}
+    R -- no --> U
+    R -- yes --> I[intake<br/>model drafts the brief]
+    I --> C[clarify<br/>PAUSE: questions]
+    C --> I
+    C --> B[confirm_brief<br/>PAUSE: approve or edit]
+    B --> RT[Research team<br/>supervisor + specialists]
+    RT --> E[evaluate_candidates<br/>license gate + Laya decisions]
+    E --> S[(Shortlist for the person)]
+    S -->|person asks for options| D[draft_options]
+    D --> V[review_options<br/>rules first, retries bounded]
+    V --> SR[select_or_revise<br/>PAUSE: choose]
+    SR -->|revise| D
+    SR --> AP[approve_version<br/>PAUSE: approve]
+    AP --> END((Approved option))

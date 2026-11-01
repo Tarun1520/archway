@@ -1,0 +1,21 @@
+# =============================================================================
+# Archway backend: development-only requirements
+# =============================================================================
+#
+# LEARNING NOTE: why a second file?
+#   These packages are only needed while developing (running tests). The app
+#   itself never imports them, so they are kept apart from requirements.txt.
+#
+# How to install (with the venv active):
+#   pip install -r backend/requirements-dev.txt
+# -----------------------------------------------------------------------------
+
+# Install everything the app needs first ("-r" means "also read this file").
+-r requirements.txt
+
+# pytest finds and runs the test functions in backend/tests/.
+pytest==9.1.1
+
+# pytest-asyncio lets pytest run `async def` tests (FastAPI and LangGraph
+# code is mostly async).
+pytest-asyncio==1.4.0

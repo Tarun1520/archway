@@ -1,0 +1,18 @@
+flowchart TB
+    subgraph L1[Level 1: one call]
+        direction LR
+        a1[Question] --> a2[LLM] --> a3[Answer]
+    end
+    subgraph L2[Level 2: a workflow]
+        direction LR
+        b1[Step 1<br/>LLM] --> b2[Step 2<br/>plain code] --> b3[Step 3<br/>LLM]
+    end
+    subgraph L3[Level 3: an agent]
+        direction LR
+        c1[LLM decides] --> c2{Need a tool?}
+        c2 -- yes --> c3[Use the tool]
+        c3 --> c1
+        c2 -- no --> c4[Final answer]
+    end
+    L1 ~~~ L2
+    L2 ~~~ L3

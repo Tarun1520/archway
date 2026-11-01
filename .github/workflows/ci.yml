@@ -1,0 +1,47 @@
+# Archway CI: every check runs in FIXTURE mode. No secrets are given to it, so it cannot make a paid call:
+# the language model, GitHub and the decision model all answer from recorded fixtures (Checkpoint 6).
+name: ci
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    env:
+      LLM_MODE: fixture
+      GITHUB_MODE: fixture
+      JEV_MODE: fixture
+      MAX_LLM_CALLS_PER_RUN: "80"
+      MAX_JEV_CALLS_PER_RUN: "60"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install -r requirements.txt -r requirements-dev.txt
+      - name: Tests (includes the whole pipeline on every sample brief, offline)
+        run: python -m pytest -q
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm test
+      - run: npm run build

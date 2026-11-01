@@ -1,0 +1,9 @@
+# What Vercel must never receive from the frontend folder.
+.env
+.env.*
+node_modules/
+dist/
+# Raw source clips kept for re-processing; the app never loads them (it uses public/hero and public/transition).
+public/space transition.mp4
+public/gemini_generated_video_*.mp4
+public/Final_transition.mp4

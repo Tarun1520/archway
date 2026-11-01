@@ -1,0 +1,11 @@
+flowchart TB
+    call[Need a model call] --> b{Budget left?}
+    b -- no --> stop[Stop and say so]
+    b -- yes --> g{Concurrency<br/>slot free?}
+    g -- no --> w[Wait]
+    w --> g
+    g -- yes --> r[Make the call]
+    r --> ok{Success?}
+    ok -- yes --> done[Count it, continue]
+    ok -- blip --> rt[Retry a couple of times]
+    rt --> r

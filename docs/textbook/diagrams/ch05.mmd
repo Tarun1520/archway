@@ -1,0 +1,4 @@
+flowchart LR
+    old["log = ['a']"] --> r{{"reducer: operator.add"}}
+    new["node returns ['b']"] --> r
+    r --> res["log = ['a', 'b']"]

@@ -1,0 +1,9 @@
+flowchart TB
+    Browser <-->|HTTP, SSE, WebSocket| API[FastAPI]
+    API --> Svc[Workflow service<br/>runs the graph, records events]
+    Svc --> G[LangGraph graph]
+    Svc --> DB[(SQLite: projects,<br/>events, research)]
+    G --> CP[(SQLite checkpoints)]
+    G --> M[(Model providers)]
+    G --> Tools[GitHub, npm, PyPI,<br/>forums, web]
+    G --> Laya[Laya decision model]

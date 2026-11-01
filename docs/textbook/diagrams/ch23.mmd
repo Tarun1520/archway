@@ -1,0 +1,8 @@
+flowchart LR
+    subgraph prep[Prepare once]
+        d[Documents] --> c[Cut into chunks] --> e[Turn each into an embedding<br/>a list of numbers for its meaning] --> vs[(Vector store)]
+    end
+    subgraph ask[At question time]
+        q[Question] --> qe[Embed the question] --> s{Find the closest chunks}
+        vs --> s --> p[Prompt = question + best chunks] --> m[Model answers]
+    end
