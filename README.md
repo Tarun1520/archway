@@ -26,7 +26,7 @@
 ## Demo
 
 <p align="center">
-  <a href="Archway_demo.mp4"><img src="docs/images/demo-poster.jpg" alt="Watch the Archway demo (5:39)" width="760"></a>
+  <a href="https://archway-beta-five.vercel.app/demo.mp4"><img src="docs/images/demo-poster.jpg" alt="Watch the Archway demo (5:39)" width="760"></a>
 </p>
 
 
