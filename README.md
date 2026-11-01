@@ -29,7 +29,7 @@
   <a href="Archway_demo.mp4"><img src="docs/images/demo-poster.jpg" alt="Watch the Archway demo (5:39)" width="760"></a>
 </p>
 
-<p align="center">From one sentence to a finished build plan, narrated, in under six minutes.</p>
+
 
 ---
 
