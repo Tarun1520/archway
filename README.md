@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://archway-beta-five.vercel.app"><strong>Try it live</strong></a> ·
-  <a href="Archway_demo.mp4"><strong>Watch the demo</strong></a> ·
+  <a href="#demo"><strong>Watch the demo</strong></a> ·
   <a href="#quick-start"><strong>Quick start</strong></a>
 </p>
 
@@ -20,6 +20,16 @@
   <img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white">
   <img alt="React" src="https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB">
 </p>
+
+---
+
+## Demo
+
+<p align="center">
+  <a href="Archway_demo.mp4"><img src="docs/images/demo-poster.jpg" alt="Watch the Archway demo (5:39)" width="760"></a>
+</p>
+
+<p align="center">From one sentence to a finished build plan, narrated, in under six minutes.</p>
 
 ---
 
